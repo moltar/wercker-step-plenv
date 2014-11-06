@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
 
-debug $(env)
-
-if [ ! -n "$MOLTAR_PLENV_VERSION" ]; then
+if [ ! -n "$WERCKER_PLENV_VERSION" ]; then
     if [ -f "$WERCKER_SOURCE_DIR/.perl-version" ]; then
-        MOLTAR_PLENV_VERSION=$(cat "$WERCKER_SOURCE_DIR/.perl-version")
+        WERCKER_PLENV_VERSION=$(cat "$WERCKER_SOURCE_DIR/.perl-version")
     else
         error 'Please specify Perl version'
         exit 1
@@ -15,11 +13,11 @@ WERCKER_CACHE_DIR_PLENV="$WERCKER_CACHE_DIR/plenv"
 PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
 export PATH="$PLENV_ROOT/bin:$PATH"
 
-PLENV_INSTALL_ARGS="$MOLTAR_PLENV_VERSION $MOLTAR_PLENV_SWITCHES"
-PLENV_VERSION_DIR=$MOLTAR_PLENV_VERSION
-if [ ! -n "$MOLTAR_PLENV_AS" ]; then
-    PLENV_INSTALL_ARGS="$PLENV_INSTALL_ARGS --as $MOLTAR_PLENV_AS"
-    PLENV_VERSION_DIR=$MOLTAR_PLENV_AS
+PLENV_INSTALL_ARGS="$WERCKER_PLENV_VERSION $WERCKER_PLENV_SWITCHES"
+PLENV_VERSION_DIR=$WERCKER_PLENV_VERSION
+if [ ! -n "$WERCKER_PLENV_AS" ]; then
+    PLENV_INSTALL_ARGS="$PLENV_INSTALL_ARGS --as $WERCKER_PLENV_AS"
+    PLENV_VERSION_DIR=$WERCKER_PLENV_AS
 fi
 
 ## install plenv if not yet installed
@@ -37,9 +35,9 @@ fi
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
-    info "Installing $MOLTAR_PLENV_VERSION" && \
+    info "Installing $WERCKER_PLENV_VERSION" && \
     sudo plenv install $PLENV_INSTALL_ARGS && \
-    success "Installed $MOLTAR_PLENV_VERSION" && \
+    success "Installed $WERCKER_PLENV_VERSION" && \
     sudo plenv install-cpanm && \
     sudo cpanm Carton && \
     sudo plenv rehash
