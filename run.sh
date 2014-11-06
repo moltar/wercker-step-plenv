@@ -21,7 +21,7 @@ if [ ! -n "$WERCKER_PLENV_AS" ]; then
 fi
 
 ## install plenv if not yet installed
-if [ ! -d "$PLENV_ROOT/plugins" ]; then
+if [ ! -d "$PLENV_ROOT" ]; then
     info "Installing plenv" && \
     sudo apt-get update -qq && \
     sudo apt-get install -y perl-modules && \
