@@ -8,8 +8,11 @@ deploy:
             name: deploy
             code: echo "Deploy to $WERCKER_DEPLOYTARGET_NAME"
     after-steps:
-        - moltar/plenv@0.1.6:
-            version: 5.20.0
         - script:
-            name: plenv test
-            code: plenv versions; plenv global; perl -V
+            name: test plenv
+            code: |
+                export WERCKER_CACHE_DIR="/tmp"
+                export WERCKER_PLENV_VERSION="5.20.0"
+                source ./run.sh
+                plenv versions
+                perl -V
