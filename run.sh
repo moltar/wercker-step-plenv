@@ -30,8 +30,9 @@ if [ ! -d "$PLENV_ROOT" ]; then
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | sudo tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build && \
     sudo sh -c 'echo '\''eval "$(plenv init -)"'\'' > /etc/profile.d/plenv.sh' &&
     sudo chmod 755 /etc/profile.d/plenv.sh && \
-    source /etc/profile
 fi
+
+eval "$(plenv init -)"
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
