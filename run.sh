@@ -21,7 +21,7 @@ if [ ! -n "$WERCKER_PLENV_AS" ]; then
 fi
 
 ## install plenv if not yet installed
-if [ ! -f "$PLENV_ROOT/bin/plenv" ]; then
+if [ ! -d "$PLENV_ROOT/plugins" ]; then
     info "Installing plenv" && \
     sudo apt-get update -qq && \
     sudo apt-get install -y perl-modules && \
@@ -35,9 +35,9 @@ fi
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
-    info "Installing $WERCKER_PLENV_VERSION" && \
+    info "Installing Perl $WERCKER_PLENV_VERSION" && \
     sudo plenv install $PLENV_INSTALL_ARGS && \
-    success "Installed $WERCKER_PLENV_VERSION" && \
+    success "Installed Perl $WERCKER_PLENV_VERSION" && \
     sudo plenv install-cpanm && \
     sudo cpanm Carton && \
     sudo plenv rehash
