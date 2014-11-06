@@ -20,8 +20,6 @@ if [ ! -n "$WERCKER_PLENV_AS" ]; then
     PLENV_VERSION_DIR=$WERCKER_PLENV_AS
 fi
 
-tree "$PLENV_ROOT"
-
 ## install plenv if not yet installed
 if [ ! -d "$PLENV_ROOT/plugins" ]; then
     info "Installing plenv" && \
