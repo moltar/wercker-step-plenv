@@ -2,12 +2,6 @@ box: wercker/default
 build:
     steps:
         - validate-wercker-step
-deploy:
-    steps:
-        - script:
-            name: deploy
-            code: echo "Deploy to $WERCKER_DEPLOYTARGET_NAME"
-    after-steps:
         - script:
             name: test plenv
             code: |
