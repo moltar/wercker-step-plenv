@@ -1,0 +1,18 @@
+name: plenv
+version: 0.1.0
+description: Install plenv and Perl
+keywords:
+  - perl
+  - perl5
+  - plenv
+  - perl-build
+properties:
+    version:
+        type: string
+        required: false
+    switches:
+        type: string
+        required: false
+    as:
+        type: string
+        required: false
