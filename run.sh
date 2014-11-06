@@ -31,6 +31,8 @@ if [ ! -d "$PLENV_ROOT" ]; then
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | sudo tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
 fi
 
+ls -lA $PLENV_ROOT
+
 export PATH="$PLENV_ROOT/bin:$PATH"
 eval "$(plenv init -)"
 
