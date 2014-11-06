@@ -27,9 +27,7 @@ if [ ! -d "$PLENV_ROOT" ]; then
     sudo apt-get install -y perl-modules && \
     sudo mkdir -p $PLENV_ROOT/plugins/perl-build && \
     curl -L --silent https://github.com/tokuhirom/plenv/archive/2.1.1.tar.gz     | sudo tar -xz --strip 1 -C $PLENV_ROOT && \
-    curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | sudo tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build && \
-    sudo sh -c 'echo '\''eval "$(plenv init -)"'\'' > /etc/profile.d/plenv.sh' &&
-    sudo chmod 755 /etc/profile.d/plenv.sh && \
+    curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | sudo tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
 fi
 
 eval "$(plenv init -)"
