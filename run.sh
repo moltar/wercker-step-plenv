@@ -14,8 +14,6 @@ PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
 
 debug "PLENV_ROOT: $PLENV_ROOT"
 
-export PATH="$PLENV_ROOT/bin:$PATH"
-
 PLENV_INSTALL_ARGS="$WERCKER_PLENV_VERSION $WERCKER_PLENV_SWITCHES"
 PLENV_VERSION_DIR=$WERCKER_PLENV_VERSION
 if [ ! -n "$WERCKER_PLENV_AS" ]; then
@@ -33,6 +31,7 @@ if [ ! -d "$PLENV_ROOT" ]; then
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | sudo tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
 fi
 
+export PATH="$PLENV_ROOT/bin:$PATH"
 eval "$(plenv init -)"
 
 ## install Perl if not yet installed
