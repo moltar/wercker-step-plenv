@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+debug $(env)
+
 if [ ! -n "$MOLTAR_PLENV_VERSION" ]; then
     if [ -f "$WERCKER_SOURCE_DIR/.perl-version" ]; then
         MOLTAR_PLENV_VERSION=$(cat "$WERCKER_SOURCE_DIR/.perl-version")
