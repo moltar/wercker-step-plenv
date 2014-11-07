@@ -23,8 +23,6 @@ fi
 ## install plenv if not yet installed
 if [ ! -d "$PLENV_ROOT" ]; then
     info "Installing plenv" && \
-    # sudo apt-get update -qq && \
-    # sudo apt-get install -qq -y perl-modules && \
     mkdir -p $PLENV_ROOT/plugins/perl-build && \
     curl -L --silent https://github.com/tokuhirom/plenv/archive/2.1.1.tar.gz     | tar -xz --strip 1 -C $PLENV_ROOT && \
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
@@ -35,9 +33,9 @@ eval "$(plenv init -)"
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
-    info "Installing Perl $WERCKER_PLENV_VERSION" && \
     plenv install $PLENV_INSTALL_ARGS && \
     success "Installed Perl $WERCKER_PLENV_VERSION" && \
+    plenv shell $PLENV_VERSION_DIR && \
     plenv install-cpanm && \
     cpanm Carton && \
     plenv rehash
