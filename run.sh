@@ -10,7 +10,7 @@ if [ ! -n "$WERCKER_PLENV_VERSION" ]; then
 fi
 
 WERCKER_CACHE_DIR_PLENV="$WERCKER_CACHE_DIR/plenv"
-PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
+export PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
 
 PLENV_INSTALL_ARGS="$WERCKER_PLENV_VERSION $WERCKER_PLENV_SWITCHES"
 PLENV_VERSION_DIR=$WERCKER_PLENV_VERSION
@@ -22,14 +22,13 @@ fi
 ## install plenv if not yet installed
 if [ ! -d "$PLENV_ROOT" ]; then
     info "Installing plenv" && \
-    sudo apt-get update -qq && \
-    sudo apt-get install -qq -y perl-modules && \
+    # sudo apt-get update -qq && \
+    # sudo apt-get install -qq -y perl-modules && \
     mkdir -p $PLENV_ROOT/plugins/perl-build && \
     curl -L --silent https://github.com/tokuhirom/plenv/archive/2.1.1.tar.gz     | tar -xz --strip 1 -C $PLENV_ROOT && \
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
 fi
 
-export PLENV_ROOT
 export PATH="$PLENV_ROOT/bin:$PATH"
 eval "$(plenv init -)"
 
