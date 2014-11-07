@@ -33,6 +33,7 @@ ls -lA $PLENV_ROOT/plugins/perl-build/
 
 export PATH="$PLENV_ROOT/bin:$PATH"
 eval "$(plenv init -)"
+plenv rehash
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
@@ -43,6 +44,3 @@ if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
     cpanm Carton && \
     plenv rehash
 fi
-
-apt-get clean && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
