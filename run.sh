@@ -29,8 +29,11 @@ if [ ! -d "$PLENV_ROOT" ]; then
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
 fi
 
+debug "after plenv install"
 export PATH="$PLENV_ROOT/bin:$PATH"
+debug "after export path $PATH"
 eval "$(plenv init -)"
+debug "after eval"
 
 ## install Perl if not yet installed
 if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
