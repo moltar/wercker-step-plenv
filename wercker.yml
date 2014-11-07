@@ -5,7 +5,7 @@ build:
         - script:
             name: test plenv
             code: |
-                export WERCKER_CACHE_DIR="$(mktemp -d)"
+                export WERCKER_CACHE_DIR="$(mktemp -d --tmpdir=$HOME)"
                 export WERCKER_PLENV_VERSION="5.20.0"
                 source ./run.sh
                 plenv versions
