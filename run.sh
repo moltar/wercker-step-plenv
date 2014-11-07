@@ -10,7 +10,7 @@ if [ ! -n "$WERCKER_PLENV_VERSION" ]; then
 fi
 
 WERCKER_CACHE_DIR_PLENV="$WERCKER_CACHE_DIR/plenv"
-export PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
+PLENV_ROOT=${PLENV_ROOT:-$WERCKER_CACHE_DIR_PLENV}
 
 PLENV_INSTALL_ARGS="$WERCKER_PLENV_VERSION $WERCKER_PLENV_SWITCHES"
 PLENV_VERSION_DIR="$WERCKER_PLENV_VERSION"
@@ -26,8 +26,12 @@ if [ ! -d "$PLENV_ROOT" ]; then
     mkdir -p $PLENV_ROOT/plugins/perl-build && \
     curl -L --silent https://github.com/tokuhirom/plenv/archive/2.1.1.tar.gz     | tar -xz --strip 1 -C $PLENV_ROOT && \
     curl -L --silent https://github.com/tokuhirom/Perl-Build/archive/1.10.tar.gz | tar -xz --strip 1 -C $PLENV_ROOT/plugins/perl-build
+else
+    info 'Found plenv in cache'
+    debug "plenv cache dir: $WERCKER_CACHE_DIR_PLENV"
 fi
 
+export PLENV_ROOT
 export PATH="$PLENV_ROOT/bin:$PATH"
 eval "$(plenv init -)"
 
@@ -39,4 +43,6 @@ if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
     plenv install-cpanm && \
     cpanm --quiet Carton && \
     plenv rehash
+else
+    info "Found Perl $PLENV_VERSION_DIR in cache"
 fi
