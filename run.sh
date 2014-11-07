@@ -37,6 +37,6 @@ if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
     success "Installed Perl $WERCKER_PLENV_VERSION" && \
     plenv shell $PLENV_VERSION_DIR && \
     plenv install-cpanm && \
-    cpanm Carton && \
+    cpanm --quiet Carton && \
     plenv rehash
 fi
