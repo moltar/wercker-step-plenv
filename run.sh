@@ -40,9 +40,7 @@ if [ ! -d "$PLENV_ROOT/versions/$PLENV_VERSION_DIR" ]; then
     plenv install $PLENV_INSTALL_ARGS && \
     success "Installed Perl $WERCKER_PLENV_VERSION" && \
     plenv shell $PLENV_VERSION_DIR && \
-    plenv install-cpanm && \
-    cpanm --quiet Carton && \
-    plenv rehash
+    plenv install-cpanm
 else
     info "Found Perl $PLENV_VERSION_DIR in cache"
 fi
